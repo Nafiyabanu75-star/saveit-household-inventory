@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SaveIt</title>
+    
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#204638">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <a href="#" class="brand">
+    <span class="brand-icon">
+        
+
+<svg viewBox="0 0 64 64" aria-hidden="true">
+    <!-- House -->
+    <path d="M6 29 L32 7 L58 29"
+          fill="none"
+          stroke="#edf5ef"
+          stroke-width="5"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <path d="M13 26 V56 H51 V26"
+          fill="none"
+          stroke="#edf5ef"
+          stroke-width="5"
+          stroke-linejoin="round"/>
+
+    <!-- Bold mint checkmark -->
+    <path d="M17 35 L27 45 L45 27"
+          fill="none"
+          stroke="#9ee6c0"
+          stroke-width="6"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+
+    <!-- Visible mint leaf -->
+    <path d="M42 55 C42 44 49 39 59 39 C59 49 53 55 42 55 Z"
+          fill="#9ee6c0"/>
+
+    <path d="M44 53 L54 43"
+          fill="none"
+          stroke="#202a27"
+          stroke-width="2.5"
+          stroke-linecap="round"/>
+</svg>
+
+
+    </span>
+   <span class="brand-text">
+    <span class="brand-name">SaveIt</span>
+    <span class="brand-subtitle">Track • Remember • Never Lose</span>
+</span>
+</a>
+    <span class="tagline">Save it before you lose it.</span>
+</header>
+
+<section class="welcome">
+    <p class="eyebrow">YOUR PERSONAL ORGANIZER</p>
+    <h1>Keep what matters, in check.</h1>
+    <p class="welcome-text">
+        One place for your items, important dates, and reminders.
+    </p>
+</section>
+<h2 class="section-title">Your dashboard</h2>
+<p class="section-description">A quick look at everything that needs your attention.</p>
+<div id="dashboard"></div>
+<section class="reminders-section">
+    <h2 class="section-title">Needs attention</h2>
+    <p class="section-description">Items that may need your attention today.</p>
+    <div id="remindersList"></div>
+</section>
+<h2 class="section-title">Add a new item</h2>
+<p class="section-description">Save an item and its important date so you know when to act.</p>
+<form id="itemForm">
+    <input type="text" id="itemName"
+        placeholder="Enter item name" required>
+<select id="itemCategory" required>
+    <option value="">Choose a category</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Food">Food</option>
+    <option value="Documents">Documents</option>
+    <option value="Household">Household</option>
+</select>
+    <input type="date" id="importantDate" required>
+    <button type="submit" id="submitButton">Add Item</button>
+</form>
+<input type="text" id="searchInput" placeholder="Search your items...">
+<select id="categoryFilter">
+    <option value="">All Categories</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Food">Food</option>
+    <option value="Documents">Documents</option>
+    <option value="Household">Household</option>
+</select>
+<ul id="itemList"></ul>
+
+<section class="backup-section">
+    <h2 class="section-title">Your data, your control</h2>
+    <p class="section-description">
+        Keep a backup of your items or restore one you saved earlier.
+    </p>
+
+    <div class="backup-buttons">
+        <button type="button" id="exportButton">
+            Download Backup
+        </button>
+
+        <button type="button" id="importButton">
+            Restore Backup
+        </button>
+
+        <input
+            type="file"
+            id="importFile"
+            accept=".json,application/json"
+            hidden
+        >
+    </div>
+
+    <p id="backupMessage" role="status"></p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

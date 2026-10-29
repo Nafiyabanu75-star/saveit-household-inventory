@@ -1,0 +1,1242 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --forest: #202a27;
+    --forest-dark: #141b19;
+    --cream: #202a27;
+    --white: #2b3733;
+    --sage: #35463f;
+    --text: #edf5ef;
+    --muted: #b1c2b7;
+    --border: #40534a;
+    --red: #e87575;
+    --gold: #f2c66d;
+    --mint: #9ee6c0;
+}
+
+
+body {
+    margin: 0;
+    padding: 32px 20px 48px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(ellipse at top left, #263b32 0%, transparent 48%),
+        #141b19;
+    color: #edf5ef;
+    line-height: 1.6;
+}
+
+
+h1 {
+    color: var(--mint);
+    font-size: clamp(34px, 5vw, 48px);
+    letter-spacing: -1.5px;
+    margin: 10px 0 0;
+}
+
+h2 {
+    color: var(--mint);
+    font-size: clamp(20px, 3vw, 26px);
+    margin-top: 30px;
+}
+
+body > p {
+    color: var(--muted);
+    font-size: 17px;
+    margin-top: 4px;
+}
+
+form {
+    max-width: 680px;
+    margin: 24px auto;
+    padding: 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 46px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #202a27;
+    color: var(--text);
+    font: inherit;
+}
+
+input::placeholder {
+    color: var(--muted);
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--mint);
+    border-color: var(--mint);
+}
+
+button {
+    min-height: 44px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 10px;
+    background: var(--mint);
+    color: #18372a;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background: #c0f3d5;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#searchInput,
+#categoryFilter {
+    display: block;
+    max-width: 680px;
+    margin: 10px auto;
+}
+
+#dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    max-width: 900px;
+    margin: 22px auto;
+}
+
+#dashboard p {
+    margin: 0;
+    padding: 20px 12px;
+    border-radius: 14px;
+    background: var(--sage);
+    color: var(--mint);
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+#dashboard .total-card {
+    background: #35463f;
+    color: #b7f3d0;
+}
+
+#dashboard .overdue-card {
+    background: #492e32;
+    color: #ffaaaa;
+}
+
+#dashboard .today-card {
+    background: #493d28;
+    color: #ffdc91;
+}
+
+#dashboard .upcoming-card {
+    background: #293e45;
+    color: #a7dfff;
+}
+
+#itemList {
+    max-width: 680px;
+    margin: 24px auto;
+    padding: 0;
+}
+
+#itemList li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 14px 0;
+    padding: 18px;
+    list-style: none;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+#itemList li > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+#itemList li p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+#itemList li button {
+    flex-shrink: 0;
+    padding: 9px 12px;
+    font-size: 13px;
+}
+
+#itemList li button:last-child {
+    background: var(--red);
+    color: #271919;
+}
+
+#itemList li button:last-child:hover {
+    background: #f39b9b;
+}
+
+.upcoming {
+    color: var(--mint);
+}
+
+.overdue {
+    color: #ffaaaa;
+    font-weight: bold;
+}
+
+.due-today {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 22px 14px 40px;
+    }
+
+    #dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #dashboard p {
+        padding: 16px 10px;
+        font-size: 14px;
+    }
+
+    form {
+        padding: 18px;
+    }
+
+    #itemList li {
+        flex-wrap: wrap;
+        padding: 14px;
+        gap: 10px;
+    }
+
+    #itemList li > div {
+        flex-basis: 100%;
+    }
+
+    #itemList li button {
+        flex: 1;
+    }
+}
+/* SaveIt app header */
+.app-header {
+    max-width: 1000px;
+    margin: 0 auto 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--mint);
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: -0.8px;
+}
+
+.brand-icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 13px;
+    background: var(--mint);
+    color: #18372a;
+    font-size: 24px;
+    box-shadow: 0 4px 14px rgba(158, 230, 192, 0.15);
+}
+
+.tagline {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.welcome {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    text-align: left;
+}
+
+.welcome .eyebrow {
+    color: var(--mint);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.welcome h1 {
+    max-width: 650px;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.15;
+}
+
+.welcome .welcome-text {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .app-header {
+        margin-bottom: 35px;
+    }
+
+    .tagline {
+        width: 100%;
+    }
+}
+/* Dashboard section */
+.section-title {
+    max-width: 900px;
+    margin: 36px auto 4px;
+    color: var(--text);
+    font-size: 25px;
+}
+
+.section-description {
+    max-width: 900px;
+    margin: 0 auto 18px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+#dashboard p {
+    line-height: 1.5;
+    border: 1px solid rgba(158, 230, 192, 0.12);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+#dashboard p:hover {
+    transform: translateY(-3px);
+    border-color: var(--mint);
+}
+/* Add item section */
+#itemForm {
+    margin-top: 18px;
+}
+
+#itemForm input,
+#itemForm select {
+    margin-bottom: 12px;
+}
+
+#itemForm button {
+    margin-top: 14px;
+    min-height: 48px;
+    font-size: 16px;
+    letter-spacing: 0.2px;
+}
+/* Needs attention reminders */
+.reminders-section {
+    max-width: 900px;
+    margin: 36px auto;
+}
+
+#remindersList {
+    display: grid;
+    gap: 12px;
+}
+
+.reminder-card {
+    padding: 16px 18px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+}
+
+.reminder-card strong {
+    color: var(--text);
+}
+
+.reminder-card p {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.reminder-card.overdue-reminder {
+    border-left-color: var(--red);
+}
+
+.reminder-card.today-reminder {
+    border-left-color: var(--gold);
+}
+
+.no-reminders {
+    padding: 18px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+    color: var(--muted);
+}
+/* Fix form button visibility */
+#itemForm button,
+#submitButton {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 14px;
+    background: #9ee6c0;
+    color: #18372a;
+    border: 2px solid #9ee6c0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(82%) sepia(25%) saturate(600%)
+            hue-rotate(95deg) brightness(100%) !important;
+    opacity: 1 !important;
+    cursor: pointer;
+}
+
+/* Make calendar icon dark and visible on the light field */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none;
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* SaveIt reminder cards */
+.reminders-section {
+    margin: 24px 0;
+}
+
+.reminder-card {
+    padding: 16px;
+    margin: 12px 0;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: #202a27;
+}
+
+.reminder-card strong {
+    display: block;
+    margin-bottom: 6px;
+    color: var(--mint);
+    font-size: 16px;
+}
+
+.reminder-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.overdue-reminder {
+    border-left: 4px solid var(--red);
+}
+
+.today-reminder {
+    border-left: 4px solid var(--mint);
+}
+
+.no-reminders {
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--mint);
+    background: #202a27;
+}
+/* Make Add Item button visible */
+#submitButton {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 14px;
+    background: #9ee6c0 !important;
+    color: #18372a !important;
+    border: 2px solid #9ee6c0 !important;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SaveIt dashboard cards */
+#dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px 0 30px;
+}
+
+#dashboard p {
+    margin: 0;
+    padding: 20px 14px;
+    background: linear-gradient(145deg, #263831, #1c2722);
+    border: 1px solid #40534a;
+    border-radius: 16px;
+    color: #edf5ef;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+@media (max-width: 650px) {
+    #dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #dashboard p {
+        padding: 16px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Dashboard card accent colors */
+#dashboard .total-card {
+    border-top: 3px solid #9ee6c0;
+}
+
+#dashboard .overdue-card {
+    border-top: 3px solid #e87575;
+}
+
+#dashboard .today-card {
+    border-top: 3px solid #f2c66d;
+}
+
+#dashboard .upcoming-card {
+    border-top: 3px solid #79b8f3;
+}
+
+/* SaveIt item cards */
+#itemList {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+#itemList li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 18px;
+    background: linear-gradient(145deg, #263831, #1c2722);
+    border: 1px solid #40534a;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.14);
+}
+
+#itemList li > div {
+    flex: 1;
+    min-width: 180px;
+}
+
+#itemList li strong {
+    color: #9ee6c0;
+    font-size: 17px;
+}
+
+#itemList li p {
+    margin: 5px 0;
+    color: #b1c2b7;
+    font-size: 14px;
+}
+
+#itemList li button {
+    width: auto;
+    min-width: 76px;
+    margin: 0;
+    padding: 9px 14px;
+}
+
+@media (max-width: 480px) {
+    #itemList li {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    #itemList li > div {
+        flex-basis: 100%;
+    }
+}
+
+/* SaveIt form styling */
+#itemForm {
+    display: grid;
+    gap: 12px;
+    margin: 20px 0 28px;
+    padding: 22px;
+    background: linear-gradient(145deg, #202e28, #19221e);
+    border: 1px solid #40534a;
+    border-radius: 18px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+#itemForm input,
+#itemForm select {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    min-height: 48px;
+    border-radius: 11px;
+}
+
+#itemForm input:focus,
+#itemForm select:focus {
+    outline: 2px solid #9ee6c0;
+    outline-offset: 2px;
+}
+
+#submitButton {
+    margin-top: 4px;
+    min-height: 50px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+
+/* SaveIt responsive page layout */
+body {
+    box-sizing: border-box;
+}
+
+body > * {
+    max-width: 100%;
+}
+
+.app-header,
+.welcome,
+.section-title,
+.section-description,
+#dashboard,
+.reminders-section,
+#itemForm,
+#searchInput,
+#categoryFilter,
+#itemList {
+    width: 100%;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#searchInput,
+#categoryFilter {
+    display: block;
+}
+
+#itemList {
+    padding-left: 0;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 20px 14px 32px;
+    }
+
+    .app-header {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .welcome h1 {
+        font-size: clamp(28px, 8vw, 38px);
+        line-height: 1.2;
+    }
+
+    #itemForm {
+        padding: 16px;
+    }
+}
+
+/* SaveIt button interactions */
+button {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button:focus-visible {
+    outline: 2px solid #9ee6c0;
+    outline-offset: 3px;
+}
+
+/* SaveIt item status colors */
+#itemList li p.overdue {
+    color: #ff8585;
+    font-weight: 700;
+}
+
+#itemList li p.due-today {
+    color: #f2c66d;
+    font-weight: 700;
+}
+
+#itemList li p.upcoming {
+    color: #9ee6c0;
+    font-weight: 700;
+}
+/* SaveIt logo */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #edf5ef;
+}
+
+.brand-icon {
+    display: inline-flex;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.brand-icon svg {
+    width: 52px;
+    height: 52px;
+    display: block;
+    overflow: visible;
+}
+
+.brand span:last-child {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* SaveIt signature logo background */
+.brand-icon {
+    display: inline-flex;
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #204638, #10251e);
+    border: 1px solid #315b49;
+    border-radius: 16px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.22);
+}
+
+.brand-icon svg {
+    display: block;
+    width: 42px;
+    height: 42px;
+}
+
+/* SaveIt premium wordmark */
+.brand span:last-child {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #edf5ef;
+    line-height: 1;
+}
+
+/* SaveIt rounded wordmark */
+.brand span:last-child {
+    font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    color: #edf5ef;
+    line-height: 1.1;
+}
+
+/* SaveIt smooth, rounded font */
+.app-header .brand .brand-name {
+    font-family: "Trebuchet MS", sans-serif !important;
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    letter-spacing: -1px !important;
+    color: #edf5ef;
+    line-height: 1.1;
+}
+
+.app-header .brand .brand-subtitle {
+    font-family: "Segoe UI", Arial, sans-serif !important;
+    font-size: 8px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.8px !important;
+    color: #9ee6c0 !important;
+    line-height: 1.2 !important;
+}
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3px;
+}
+
+.brand .brand-name {
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    color: #edf5ef;
+    line-height: 1.1;
+}
+
+.brand .brand-subtitle {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #9ee6c0;
+    line-height: 1.4;
+}
+.brand .brand-name {
+    font-size: 32px !important;
+    font-weight: 700;
+}
+
+.brand .brand-subtitle {
+    font-size: 9px !important;
+    letter-spacing: 1px;
+}
+.brand-text {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 2px !important;
+}
+
+.brand .brand-name {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+}
+
+.brand .brand-subtitle {
+    display: block !important;
+    font-size: 8px !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.8px !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase !important;
+}
+
+/* SaveIt — improved mobile design */
+@media (max-width: 600px) {
+    body {
+        padding: 18px 14px 30px;
+        overflow-x: hidden;
+    }
+
+    .app-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+    }
+
+    .brand-icon svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .app-header .brand .brand-name {
+        font-size: 28px !important;
+    }
+
+    .app-header .brand .brand-subtitle {
+        font-size: 7px !important;
+        letter-spacing: 0.5px !important;
+    }
+
+    .tagline {
+        font-size: 11px;
+        text-align: right;
+    }
+
+    .welcome {
+        margin-top: 32px;
+        margin-bottom: 28px;
+    }
+
+    .welcome h1 {
+        font-size: clamp(28px, 8vw, 36px);
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .welcome-text,
+    .section-description {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .section-title {
+        font-size: 21px;
+        line-height: 1.3;
+    }
+
+    #dashboard {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #dashboard p {
+        padding: 16px 12px;
+        border-radius: 14px;
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    #itemForm {
+        padding: 16px;
+        gap: 14px;
+        border-radius: 16px;
+    }
+
+    #itemForm input,
+    #itemForm select {
+        min-height: 48px;
+        font-size: 16px;
+    }
+
+    #submitButton {
+        width: 100%;
+        min-height: 50px;
+        font-size: 16px;
+    }
+
+    #searchInput,
+    #categoryFilter {
+        width: 100%;
+        min-height: 46px;
+        margin-bottom: 12px;
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+
+    #itemList li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    #itemList li > div {
+        flex: 1 1 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    #itemList li button {
+        min-height: 40px;
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .brand-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .brand-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .app-header .brand .brand-name {
+        font-size: 25px !important;
+    }
+
+    .tagline {
+        font-size: 10px;
+    }
+
+    #dashboard {
+        gap: 8px;
+    }
+}
+
+/* SaveIt empty state */
+#itemList li.empty-state {
+    display: block;
+    text-align: center;
+    padding: 32px 20px;
+    margin: 20px 0;
+    background: linear-gradient(145deg, #263831, #1c2722);
+    border: 1px dashed #557564;
+    border-radius: 18px;
+    box-shadow: none;
+}
+
+#itemList li.empty-state h3 {
+    margin: 0 0 10px;
+    color: #9ee6c0;
+    font-size: 21px;
+}
+
+#itemList li.empty-state p {
+    margin: 7px 0;
+    color: #b1c2b7;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* SaveIt — professional card polish */
+#dashboard > p {
+    border: 1px solid rgba(158, 230, 192, 0.18);
+    border-radius: 18px;
+    padding: 22px 20px;
+    background: linear-gradient(145deg, #263d32, #1a2b23);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+#dashboard > p:hover {
+    transform: translateY(-3px);
+    border-color: #70cda0;
+}
+
+#itemList li:not(.empty-state) {
+    border: 1px solid rgba(158, 230, 192, 0.15);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 14px;
+    background: linear-gradient(145deg, #263831, #1c2923);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.14);
+    transition: border-color 0.2s ease;
+}
+
+#itemList li:not(.empty-state):hover {
+    border-color: rgba(158, 230, 192, 0.5);
+}
+
+button {
+    cursor: pointer;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+button:hover {
+    filter: brightness(1.12);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* SaveIt — clear item status labels */
+#itemList li p.overdue {
+    display: inline-block;
+    color: #ffaaa5;
+    background: rgba(220, 70, 70, 0.14);
+    border: 1px solid rgba(255, 120, 120, 0.3);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#itemList li p.due-today {
+    display: inline-block;
+    color: #ffd58a;
+    background: rgba(235, 170, 55, 0.13);
+    border: 1px solid rgba(255, 205, 100, 0.3);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#itemList li p.upcoming {
+    display: inline-block;
+    color: #9ee6c0;
+    background: rgba(80, 200, 140, 0.12);
+    border: 1px solid rgba(120, 220, 170, 0.25);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* SaveIt — polished form fields */
+#itemForm input,
+#itemForm select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid #405b4c;
+    border-radius: 12px;
+    background: #17271f;
+    color: #edf5ef;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#itemForm input:focus,
+#itemForm select:focus {
+    border-color: #80d9ac;
+    box-shadow: 0 0 0 3px rgba(128, 217, 172, 0.13);
+}
+
+#itemForm input::placeholder {
+    color: #91a79a;
+}
+
+#submitButton {
+    width: 100%;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #80d9ac, #4fb987);
+    color: #10271c;
+    font-size: 15px;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(79, 185, 135, 0.15);
+}
+
+#submitButton:hover {
+    filter: brightness(1.08);
+    box-shadow: 0 7px 20px rgba(79, 185, 135, 0.25);
+}
+
+/* SaveIt — polished search and filter */
+#searchInput,
+#categoryFilter {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    border: 1px solid #405b4c;
+    border-radius: 12px;
+    background: #17271f;
+    color: #edf5ef;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#searchInput:focus,
+#categoryFilter:focus {
+    border-color: #80d9ac;
+    box-shadow: 0 0 0 3px rgba(128, 217, 172, 0.13);
+}
+
+#searchInput::placeholder {
+    color: #91a79a;
+}
+
+#categoryFilter option {
+    background: #17271f;
+    color: #edf5ef;
+}
+
+/* SaveIt — polished reminder cards */
+.reminder-card {
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    background: linear-gradient(145deg, #263831, #1c2923);
+    border: 1px solid rgba(158, 230, 192, 0.18);
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.reminder-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(158, 230, 192, 0.5);
+}
+
+.reminder-card strong {
+    display: block;
+    color: #edf5ef;
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.reminder-card p {
+    color: #b1c2b7;
+    font-size: 13px;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.overdue-reminder {
+    border-left: 4px solid #f07878;
+}
+
+.today-reminder {
+    border-left: 4px solid #f1c66d;
+}
+
+.no-reminders {
+    padding: 18px;
+    text-align: center;
+    color: #9ee6c0;
+    background: #1c2923;
+    border: 1px dashed #405b4c;
+    border-radius: 14px;
+    line-height: 1.6;
+}

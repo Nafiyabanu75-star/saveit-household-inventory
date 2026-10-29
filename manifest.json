@@ -1,0 +1,11 @@
+
+{
+  "name": "SaveIt - Household Inventory",
+  "short_name": "SaveIt",
+  "description": "Save it before you lose it. Keep track of your household items and important dates.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#10251e",
+  "theme_color": "#204638",
+  "orientation": "portrait-primary"
+}
